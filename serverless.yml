@@ -1,0 +1,14 @@
+service: test-parameter-stores
+provider:
+  name: aws
+  runtime: nodejs16.x
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: hello
+          method: get
+    environment:
+      TOP_SECRET_VARIABLE: ${ssm:my-secret-string}
+      
